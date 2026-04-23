@@ -1,7 +1,7 @@
 # O.R.B.I.T. — Outbreak Reporting & Biological Intelligence Tracker 
 ### *Tracking Today For A Healthier Tomorrow*
 > **orbitdetection.com** 
-## Overview
+### Overview
 > The system is a web-based platform designed to detect, monitor, and present real-time data related to outbreaks and biological events. It integrates external APIs, a backend server, and a database to provide users with up-to-date information through an interactive and responsive interface. The platform users to securely access, analyze, and visualize health-related data, supporting informed decision-making through efficient data processing and responsive design.
 ---
 
@@ -312,5 +312,20 @@ All endpoints may return the following error format:
 ---
 
 ## Database Schema
-
+> This describes the database structure used in the O.R.B.I.T. system. It uses a single table to store user credentials for authentication.
+```
+| Field      | Type      | Description                   |
+| ---------- | --------- | ----------------------------- |
+| id         | INT (PK)  | Unique identifier             |
+| email      | VARCHAR   | User email (login credential) |
+| password   | VARCHAR   | Hashed user password          |
+| created_at | TIMESTAMP | Account creation date         |
+```
+---
 ## Deployment Diagram
+```mermaid
+graph TD
+    User([User Browser]) --> Express[Node.js Express Server]
+    Express --> Cache[(Local Map Cache)]
+    Express --> Auth[Google/Firebase OAuth]
+    Express --> External[Disease Data APIs]
